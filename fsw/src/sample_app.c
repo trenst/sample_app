@@ -266,7 +266,11 @@ void SAMPLE_APP_ProcessGroundCommand(CFE_SB_Buffer_t *SBBufPtr)
             }
 
             break;
-
+        case SAMPLE_APP_HELLO_WORLD_CC:
+            if (SAMPLE_APP_VerifyCmdLength(&SBBufPtr->Msg, sizeof(SAMPLE_APP_NoopCmd_t))) {
+                SAMPLE_APP_HelloCmd((SAMPLE_APP_NoopCmd_t * )SBBufPtr);
+            }
+            break;      
         /* default case already found during FC vs length test */
         default:
             CFE_EVS_SendEvent(SAMPLE_APP_COMMAND_ERR_EID, CFE_EVS_EventType_ERROR,
@@ -459,4 +463,12 @@ void SAMPLE_APP_GetCrc(const char *TableName)
         Crc = TblInfoPtr.Crc;
         CFE_ES_WriteToSysLog("Sample App: CRC: 0x%08lX\n\n", (unsigned long)Crc);
     }
+}
+
+int32 SAMPLE_APP_HelloCmd(const SAMPLE_APP_NoopCmd_t *Msg)
+{
+    SAMPLE_APP_Data.CmdCounter++;
+    CFE_EVS_SendEvent(SAMPLE_APP_HELLO_WORLD_INF_EID, CFE_EVS_EventType_INFORMATION,
+                      "Hello, World.  This is sample_app!");
+    return CFE_SUCCESS;
 }

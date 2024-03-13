@@ -108,5 +108,6 @@ void  SAMPLE_APP_GetCrc(const char *TableName);
 int32 SAMPLE_APP_TblValidationFunc(void *TblData);
 
 bool SAMPLE_APP_VerifyCmdLength(CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength);
+int32 SAMPLE_APP_HelloCmd(const SAMPLE_APP_NoopCmd_t *Msg);
 
 #endif /* SAMPLE_APP_H */

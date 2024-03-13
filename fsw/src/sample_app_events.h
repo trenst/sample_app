@@ -33,5 +33,7 @@
 #define SAMPLE_APP_INVALID_MSGID_ERR_EID 5
 #define SAMPLE_APP_LEN_ERR_EID           6
 #define SAMPLE_APP_PIPE_ERR_EID          7
+#define SAMPLE_APP_HELLO_WORLD_INF_EID   8
+
 
 #endif /* SAMPLE_APP_EVENTS_H */
